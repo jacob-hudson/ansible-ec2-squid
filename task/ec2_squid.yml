@@ -1,0 +1,18 @@
+---
+
+- name: Wrapper playbook for EC2
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - { role: aws_ec2 }
+
+
+- name: Wrapper playbook for Squid Proxy
+  remote_user: ubuntu
+  hosts: proxy_servers
+  gather_facts: false
+  pre_tasks:
+    - name: 'install python'
+      raw: 'sudo apt-get update && sudo apt-get -y install python'
+  roles:
+    - { role: squid_proxy }

@@ -1,0 +1,5 @@
+---
+# handlers file for squid_proxy
+
+- name: restart squid3
+  command: sudo systemctl restart squid
